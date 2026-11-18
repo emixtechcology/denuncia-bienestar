@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#691C32">
+<meta name="robots" content="noindex">
+<title>Voz Bienestar · Denuncia anónima</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20120%20120%22%3E%20%3Cdefs%3E%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%239F2241%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%235A1529%22/%3E%20%3C/linearGradient%3E%20%3C/defs%3E%20%3Cpath%20d%3D%22M60%205%20L105%2021%20V57%20C105%2086%2086%20105%2060%20115%20C34%20105%2015%2086%2015%2057%20V21%20Z%22%20fill%3D%22url%28%23g%29%22/%3E%20%3Cpath%20d%3D%22M60%2013%20L97%2026%20V57%20C97%2081%2081%2097%2060%20106%20C39%2097%2023%2081%2023%2057%20V26%20Z%22%20fill%3D%22none%22%20stroke%3D%22%23BC955C%22%20stroke-width%3D%222.5%22/%3E%20%3Cpath%20d%3D%22M42%2036%20H78%20A10%2010%200%200%201%2088%2046%20V64%20A10%2010%200%200%201%2078%2074%20H58%20L46%2085%20V74%20H42%20A10%2010%200%200%201%2032%2064%20V46%20A10%2010%200%200%201%2042%2036%20Z%22%20fill%3D%22%23fff%22/%3E%20%3Ccircle%20cx%3D%2247%22%20cy%3D%2255%22%20r%3D%224.5%22%20fill%3D%22%239F2241%22/%3E%20%3Ccircle%20cx%3D%2260%22%20cy%3D%2255%22%20r%3D%224.5%22%20fill%3D%22%23BC955C%22/%3E%20%3Ccircle%20cx%3D%2273%22%20cy%3D%2255%22%20r%3D%224.5%22%20fill%3D%22%239F2241%22/%3E%20%3C/svg%3E">
+<style>
+:root{--guinda:#691C32;--guinda2:#9F2241;--dorado:#BC955C;--crema:#F7F2EA;--txt:#222;--gris:#6b6b6b;--borde:#e3dccf;--ok:#1e7a4c}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--crema);color:var(--txt);min-height:100vh}
+header{background:linear-gradient(135deg,var(--guinda),var(--guinda2));color:#fff;padding:18px 18px 22px;border-bottom:4px solid var(--dorado)}
+header h1{font-size:1.35rem;letter-spacing:.3px}
+.marca{display:flex;align-items:center;gap:12px}
+.marca .ico-logo{width:54px;height:54px;flex:none;filter:drop-shadow(0 2px 4px rgba(0,0,0,.25))}
+header h1 b{color:#E9CFA0}
+.ico-logo path:first-of-type{stroke:#fff;stroke-width:3}
+header p{font-size:.85rem;opacity:.9;margin-top:4px}
+main{max-width:560px;margin:0 auto;padding:16px 16px 110px}
+.card{background:#fff;border-radius:16px;padding:18px;box-shadow:0 2px 10px rgba(0,0,0,.05);margin-bottom:14px}
+h2{font-size:1.1rem;color:var(--guinda);margin-bottom:4px}
+.sub{color:var(--gris);font-size:.88rem;margin-bottom:14px}
+.btn{display:block;width:100%;border:none;border-radius:12px;padding:15px;font-size:1rem;font-weight:600;cursor:pointer}
+.btn-p{background:var(--guinda);color:#fff}
+.btn-s{background:#fff;color:var(--guinda);border:2px solid var(--guinda)}
+.btn-d{background:var(--dorado);color:#fff}
+.btn:disabled{opacity:.5}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{background:#fff;border:2px solid var(--borde);border-radius:14px;padding:14px 10px;text-align:center;cursor:pointer;font-size:.88rem;font-weight:600;line-height:1.25;transition:.15s}
+.opt .ico{font-size:1.8rem;display:block;margin-bottom:6px}
+.opt.sel{border-color:var(--guinda);background:#fbf1f4;color:var(--guinda)}
+.lista .opt{text-align:left;padding:13px 14px;margin-bottom:8px}
+label{display:block;font-size:.85rem;font-weight:600;margin:12px 0 6px}
+input,select,textarea{width:100%;border:1.5px solid var(--borde);border-radius:10px;padding:12px;font-size:1rem;font-family:inherit;background:#fff}
+textarea{min-height:120px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--guinda2)}
+.hint{font-size:.78rem;color:var(--gris);margin-top:4px}
+.prog{display:flex;gap:6px;margin-bottom:14px}
+.prog span{flex:1;height:5px;border-radius:5px;background:#e6dccb}
+.prog span.on{background:var(--guinda)}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;padding:12px 16px calc(12px + env(safe-area-inset-bottom));box-shadow:0 -2px 12px rgba(0,0,0,.08);display:flex;gap:10px}
+.nav .btn{flex:1}
+.hidden{display:none!important}
+.escuela-box{border:2px dashed var(--dorado);border-radius:14px;padding:14px;margin-top:14px;background:#fffaf2}
+.escuela-box h3{font-size:.95rem;color:#8a6a35}
+.res-esc{border:1px solid var(--borde);border-radius:10px;margin-top:6px;max-height:240px;overflow:auto;background:#fff}
+.res-esc div{padding:10px 12px;border-bottom:1px solid #f0ebe2;font-size:.85rem;cursor:pointer}
+.res-esc div b{display:block}
+.esc-sel{background:#eef7f1;border:1.5px solid var(--ok);border-radius:10px;padding:10px 12px;margin-top:8px;font-size:.85rem}
+.sino{display:flex;gap:8px}
+.sino button{flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--borde);background:#fff;font-weight:600;font-size:.9rem}
+.sino button.sel{background:var(--guinda);color:#fff;border-color:var(--guinda)}
+.thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.thumb{position:relative;aspect-ratio:1;border-radius:10px;overflow:hidden;background:#eee;display:flex;align-items:center;justify-content:center;font-size:.7rem;text-align:center;padding:4px}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.thumb button{position:absolute;top:4px;right:4px;background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:50%;width:24px;height:24px}
+.drop{border:2px dashed var(--guinda2);border-radius:14px;padding:22px;text-align:center;color:var(--guinda);font-weight:600;cursor:pointer;background:#fdf6f8}
+.shield{display:flex;gap:10px;align-items:flex-start;background:#eef7f1;border-radius:12px;padding:12px;font-size:.82rem;color:#1b5e3c;margin-top:12px}
+.folio{background:linear-gradient(135deg,var(--guinda),var(--guinda2));color:#fff;border-radius:16px;padding:22px;text-align:center}
+.folio .f{font-size:1.6rem;font-weight:800;letter-spacing:1.5px;margin:6px 0}
+.folio .p{font-size:1.3rem;font-weight:700;background:rgba(255,255,255,.15);display:inline-block;padding:6px 16px;border-radius:10px;letter-spacing:4px}
+.fed{border:2px solid var(--dorado);background:#fffaf0}
+.fed h3{color:#8a6a35;font-size:1rem;margin-bottom:6px}
+.estado{font-size:1.2rem;font-weight:800;color:var(--guinda)}
+.err{background:#fde8e8;color:#9b1c1c;border-radius:10px;padding:10px 12px;font-size:.85rem;margin-top:10px}
+.loader{position:fixed;inset:0;background:rgba(255,255,255,.85);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99;gap:14px;font-weight:600;color:var(--guinda)}
+.spin{width:44px;height:44px;border:4px solid #eadde0;border-top-color:var(--guinda);border-radius:50%;animation:s 1s linear infinite}
+@keyframes s{to{transform:rotate(360deg)}}
+.resumen-row{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid #f0ebe2;font-size:.88rem}
+.resumen-row span:first-child{color:var(--gris)}
+.resumen-row span:last-child{text-align:right;font-weight:600}
+</style>
+</head>
+<body>
+<header>
+  <div class="marca">
+        <svg class="ico-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Voz Bienestar"><defs>
+    <linearGradient id="gU" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9F2241"/><stop offset="1" stop-color="#5A1529"/>
+    </linearGradient>
+  </defs>
+  <path d="M60 5 L105 21 V57 C105 86 86 105 60 115 C34 105 15 86 15 57 V21 Z" fill="url(#gU)"/>
+  <path d="M60 13 L97 26 V57 C97 81 81 97 60 106 C39 97 23 81 23 57 V26 Z" fill="none" stroke="#BC955C" stroke-width="2.5"/>
+  <path d="M42 36 H78 A10 10 0 0 1 88 46 V64 A10 10 0 0 1 78 74 H58 L46 85 V74 H42 A10 10 0 0 1 32 64 V46 A10 10 0 0 1 42 36 Z" fill="#fff"/>
+  <circle cx="47" cy="55" r="4.5" fill="#9F2241"/>
+  <circle cx="60" cy="55" r="4.5" fill="#BC955C"/>
+  <circle cx="73" cy="55" r="4.5" fill="#9F2241"/></svg>
+    <div>
+      <h1>VOZ <b>BIENESTAR</b></h1>
+      <p>Denuncia anónima · Programas para el Bienestar Tabasco</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- INICIO -->
+  <section id="v-inicio">
+    <div class="card">
+      <h2>Tu voz protege los programas</h2>
+      <p class="sub">Si viste un cobro, un condicionamiento o cualquier irregularidad en un programa del Bienestar, denúncialo. <b>No pedimos tu nombre.</b></p>
+      <button class="btn btn-p" onclick="iniciar()">📝 Hacer una denuncia</button>
+      <div style="height:10px"></div>
+      <button class="btn btn-s" onclick="ver('consulta')">🔎 Consultar mi folio</button>
+      <div class="shield">🔒<div>No guardamos tu nombre, correo ni ubicación de tu celular. A las fotos se les quitan los datos ocultos antes de enviarlas. Recibirás un <b>folio y un PIN</b> para dar seguimiento.</div></div>
+    </div>
+    <div class="card">
+      <h2>Recuerda</h2>
+      <p class="sub" style="margin:0">Los programas del Bienestar son <b>gratuitos</b>. Nadie puede cobrarte, pedirte tu voto ni quedarse con tu tarjeta.</p>
+    </div>
+  </section>
+
+  <!-- WIZARD -->
+  <section id="v-form" class="hidden">
+    <div class="prog" id="prog"></div>
+
+    <!-- Paso 1 -->
+    <div class="paso card" data-p="1">
+      <h2>1. ¿De qué programa se trata?</h2>
+      <p class="sub">Elige uno.</p>
+      <div class="grid" id="programas"></div>
+    </div>
+
+    <!-- Paso 2 -->
+    <div class="paso card hidden" data-p="2">
+      <h2>2. ¿Qué pasó?</h2>
+      <p class="sub">Selecciona lo que más se parezca.</p>
+      <div class="lista" id="tipos"></div>
+      <label>Cuéntanos con tus palabras *</label>
+      <textarea id="descripcion" placeholder="¿Qué pasó, cuándo, quién estuvo involucrado? Entre más detalles, mejor."></textarea>
+      <label>¿Cuándo pasó? (aproximado)</label>
+      <input type="date" id="fechaHechos">
+      <label>Persona o servidor señalado (opcional)</label>
+      <input id="persona" placeholder="Nombre, apodo, cargo o cómo identificarlo">
+
+      <!-- MÓDULO ESCUELA -->
+      <div class="escuela-box hidden" id="escuelaBox">
+        <h3>🏫 Datos de la escuela</h3>
+        <label>Busca por nombre o clave (CCT)</label>
+        <input id="qEscuela" placeholder="Ej. 27DPR0123X o Benito Juárez Cárdenas" autocomplete="off">
+        <div class="res-esc hidden" id="resEsc"></div>
+        <div class="esc-sel hidden" id="escSel"></div>
+        <p class="hint">¿No aparece? Escríbela a mano abajo.</p>
+        <label>Nombre de la escuela (si no la encontraste)</label>
+        <input id="escManual" placeholder="Nombre y localidad">
+
+        <div id="pregLean">
+          <label>¿El comité escolar (CEAP) está integrado?</label>
+          <div class="sino" data-k="ceapIntegrado"><button>Sí</button><button>No</button><button>No sé</button></div>
+          <label>¿La obra o mejora está detenida?</label>
+          <div class="sino" data-k="obraDetenida"><button>Sí</button><button>No</button><button>No sé</button></div>
+        </div>
+        <label>¿Les han cobrado a los padres de familia?</label>
+        <div class="sino" data-k="cobroPadres"><button>Sí</button><button>No</button><button>No sé</button></div>
+        <label>Monto aproximado (si hubo cobro)</label>
+        <input id="montoCobro" inputmode="decimal" placeholder="$">
+      </div>
+    </div>
+
+    <!-- Paso 3 -->
+    <div class="paso card hidden" data-p="3">
+      <h2>3. ¿Dónde pasó?</h2>
+      <label>Municipio *</label>
+      <select id="municipio"><option value="">Selecciona…</option></select>
+      <label>Localidad, colonia o lugar</label>
+      <input id="localidad" placeholder="Ej. Ranchería El Bellote, módulo de pago…">
+      <label>Ubicación en el mapa (opcional)</label>
+      <button class="btn btn-s" type="button" onclick="gps()" id="btnGps">📍 Usar ubicación del lugar</button>
+      <p class="hint" id="gpsTxt">Úsala solo si estás en el lugar de los hechos. Es opcional.</p>
+    </div>
+
+    <!-- Paso 4 -->
+    <div class="paso card hidden" data-p="4">
+      <h2>4. Evidencias</h2>
+      <p class="sub">Fotos, videos, audios o documentos (opcional, máximo 8).</p>
+      <div class="drop" onclick="document.getElementById('files').click()">📎 Toca para agregar evidencias</div>
+      <input type="file" id="files" multiple accept="image/*,video/*,audio/*,application/pdf" class="hidden">
+      <div class="thumbs" id="thumbs"></div>
+      <div class="shield">🔒<div>A las <b>fotos</b> se les borran los datos ocultos (ubicación GPS, modelo del celular). En <b>videos y audios</b> no es posible: si te preocupa, mejor toma una captura de pantalla.</div></div>
+    </div>
+
+    <!-- Paso 5 -->
+    <div class="paso card hidden" data-p="5">
+      <h2>5. Revisa y envía</h2>
+      <div id="resumen"></div>
+      <label>¿Quieres que te contactemos? (opcional)</label>
+      <input id="contacto" placeholder="Teléfono o correo — déjalo vacío para seguir anónimo">
+      <p class="hint">Solo lo verá el titular de la Delegación. Si lo dejas vacío, tu denuncia es 100% anónima.</p>
+      <div id="errEnvio"></div>
+    </div>
+  </section>
+
+  <!-- RESULTADO -->
+  <section id="v-ok" class="hidden">
+    <div class="folio" id="folioCard">
+      <div>✅ Denuncia recibida</div>
+      <div class="f" id="okFolio"></div>
+      <div style="font-size:.8rem;opacity:.85;margin-bottom:6px">PIN de seguimiento</div>
+      <div class="p" id="okPin"></div>
+      <p style="font-size:.8rem;margin-top:12px;opacity:.9">Guárdalos. Es la única forma de consultar tu denuncia.</p>
+    </div>
+    <div style="height:12px"></div>
+    <button class="btn btn-d" onclick="guardarImagen()">💾 Guardar folio como imagen</button>
+    <div id="imgFolio"></div>
+    <div style="height:14px"></div>
+
+    <div class="card fed hidden" id="fedCard">
+      <h3>🇲🇽 También repórtalo a nivel nacional</h3>
+      <p class="sub" id="fedTxt"></p>
+      <a class="btn btn-p" id="fedLink" target="_blank" rel="noopener" style="text-align:center;text-decoration:none" onclick="fedClick()">Ir al canal federal de denuncia ↗</a>
+      <div id="fedFolioBox" class="hidden">
+        <label>Si te dieron un folio federal, anótalo (opcional)</label>
+        <input id="folioFed" placeholder="Folio federal">
+        <div style="height:8px"></div>
+        <button class="btn btn-s" onclick="guardarFed()">Guardar folio federal</button>
+        <p class="hint" id="fedOk"></p>
+      </div>
+    </div>
+    <button class="btn btn-s" onclick="location.reload()">Volver al inicio</button>
+  </section>
+
+  <!-- CONSULTA -->
+  <section id="v-consulta" class="hidden">
+    <div class="card">
+      <h2>Consultar mi denuncia</h2>
+      <label>Folio</label>
+      <input id="cFolio" placeholder="VB-261117-XXXX" style="text-transform:uppercase">
+      <label>PIN</label>
+      <input id="cPin" inputmode="numeric" maxlength="6" placeholder="6 dígitos">
+      <div style="height:14px"></div>
+      <button class="btn btn-p" onclick="consultar()">Consultar</button>
+      <div id="cRes"></div>
+    </div>
+    <button class="btn btn-s" onclick="ver('inicio')">← Volver</button>
+  </section>
+</main>
+
+<div class="nav hidden" id="nav">
+  <button class="btn btn-s" onclick="atras()">← Atrás</button>
+  <button class="btn btn-p" id="btnSig" onclick="siguiente()">Siguiente →</button>
+</div>
+<div class="loader hidden" id="loader"><div class="spin"></div><div id="loaderTxt">Enviando…</div></div>
+
+<script>
+
+const FALLBACK = {
+  programas:[{id:'adultos',nombre:'Pensión Adultos Mayores',icono:'👵'},{id:'discapacidad',nombre:'Pensión Personas con Discapacidad',icono:'♿'},{id:'mujeres',nombre:'Pensión Mujeres Bienestar',icono:'👩'},{id:'sembrando',nombre:'Sembrando Vida',icono:'🌱'},{id:'rita',nombre:'Beca Rita Cetina',icono:'🎒',escuela:true},{id:'benito',nombre:'Beca Benito Juárez',icono:'🎓',escuela:true},{id:'lean',nombre:'La Escuela es Nuestra',icono:'🏫',escuela:true},{id:'jovenes',nombre:'Jóvenes Construyendo el Futuro',icono:'💼'},{id:'madres',nombre:'Apoyo a Madres Trabajadoras',icono:'👶'},{id:'otro',nombre:'Otro programa',icono:'❓'}],
+  tipos:[{id:'cobro',nombre:'Me cobraron por un trámite o apoyo'},{id:'condiciona',nombre:'Condicionan el apoyo (votos, eventos, afiliación)'},{id:'coyote',nombre:'Falso gestor / “coyote”'},{id:'retencion',nombre:'Retienen mi tarjeta o documentos'},{id:'amenaza',nombre:'Amenazas o intimidación'},{id:'malusorecurso',nombre:'Uso indebido del recurso'},{id:'noatiende',nombre:'El servidor no llega o no atiende'},{id:'maltrato',nombre:'Mal trato o discriminación'},{id:'nopago',nombre:'No me llega el pago / dejé de recibirlo'},{id:'padron',nombre:'Personas que no deberían recibir el apoyo'},{id:'obra',nombre:'Obra escolar detenida o mal hecha'},{id:'otro',nombre:'Otra irregularidad'}],
+  municipios:['Balancán','Cárdenas','Centla','Centro','Comalcalco','Cunduacán','Emiliano Zapata','Huimanguillo','Jalapa','Jalpa de Méndez','Jonuta','Macuspana','Nacajuca','Paraíso','Tacotalpa','Teapa','Tenosique'],
+  linkFederal:'',textoFederal:''
+};
+let CFG = FALLBACK, paso = 1, TOTAL = 5;
+const D = { programa:'', tipo:'', lat:'', lng:'', escuelaSel:null, sino:{} };
+let ARCH = []; // {name,mime,data,preview}
+let RES = null;
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+// ⚙️ PEGA AQUÍ LA URL /exec DEL APPS SCRIPT DEL CIUDADANO (proyecto 2)
+const API = 'PEGA_AQUI_LA_URL_EXEC_DEL_PROYECTO_CIUDADANO';
+
+// Llama a las funciones del Code.gs del ciudadano
+async function api(fn, ...args) {
+  const r = await fetch(API, { method: 'POST', body: JSON.stringify({ fn, args }) });
+  const j = await r.json();
+  if (!j.ok) throw new Error(j.error || 'Error');
+  return j.data;
+}
+function loader(on, txt){ $('loader').classList.toggle('hidden',!on); if(txt) $('loaderTxt').textContent = txt; }
+function ver(v){ ['inicio','form','ok','consulta'].forEach(x=>$('v-'+x).classList.toggle('hidden',x!==v)); $('nav').classList.toggle('hidden',v!=='form'); scrollTo(0,0); }
+
+// ---------- Carga inicial ----------
+(async()=>{
+  try { CFG = await api('obtenerConfig'); } catch(e) {}
+  pintarCatalogos();
+})();
+
+function pintarCatalogos(){
+  $('programas').innerHTML = CFG.programas.map(p=>`<div class="opt" data-id="${p.id}"><span class="ico">${p.icono}</span>${esc(p.nombre)}</div>`).join('');
+  $('tipos').innerHTML = CFG.tipos.map(t=>`<div class="opt" data-id="${t.id}">${esc(t.nombre)}</div>`).join('');
+  $('municipio').innerHTML = '<option value="">Selecciona…</option>' + CFG.municipios.map(m=>`<option>${esc(m)}</option>`).join('');
+  $('programas').onclick = e => { const o=e.target.closest('.opt'); if(!o) return; selUno('programas',o); D.programa=o.dataset.id; };
+  $('tipos').onclick = e => { const o=e.target.closest('.opt'); if(!o) return; selUno('tipos',o); D.tipo=o.dataset.id; };
+}
+function selUno(cont,o){ document.querySelectorAll('#'+cont+' .opt').forEach(x=>x.classList.remove('sel')); o.classList.add('sel'); }
+
+document.querySelectorAll('.sino').forEach(g=>{
+  g.onclick = e => { if(e.target.tagName!=='BUTTON') return; g.querySelectorAll('button').forEach(b=>b.classList.remove('sel')); e.target.classList.add('sel'); D.sino[g.dataset.k]=e.target.textContent; };
+});
+
+// ---------- Wizard ----------
+function iniciar(){ ver('form'); irPaso(1); }
+function irPaso(n){
+  paso = n;
+  document.querySelectorAll('.paso').forEach(p=>p.classList.toggle('hidden', +p.dataset.p!==n));
+  $('prog').innerHTML = Array.from({length:TOTAL},(_,i)=>`<span class="${i<n?'on':''}"></span>`).join('');
+  $('btnSig').textContent = n===TOTAL ? '📨 Enviar denuncia' : 'Siguiente →';
+  if (n===2) {
+    const prog = CFG.programas.find(p=>p.id===D.programa);
+    $('escuelaBox').classList.toggle('hidden', !(prog && prog.escuela));
+    $('pregLean').classList.toggle('hidden', D.programa!=='lean');
+  }
+  if (n===TOTAL) pintarResumen();
+  scrollTo(0,0);
+}
+function atras(){ if(paso===1) ver('inicio'); else irPaso(paso-1); }
+function siguiente(){
+  const e = validar(paso);
+  if (e) { alert(e); return; }
+  if (paso===TOTAL) enviar(); else irPaso(paso+1);
+}
+function validar(p){
+  if (p===1 && !D.programa) return 'Elige el programa.';
+  if (p===2) { if(!D.tipo) return 'Elige qué tipo de irregularidad fue.'; if($('descripcion').value.trim().length<15) return 'Describe un poco más lo que pasó (mínimo 15 caracteres).'; }
+  if (p===3 && !$('municipio').value) return 'Selecciona el municipio.';
+  return '';
+}
+function pintarResumen(){
+  const prog = CFG.programas.find(p=>p.id===D.programa)||{}, tipo = CFG.tipos.find(t=>t.id===D.tipo)||{};
+  const esc_ = D.escuelaSel ? D.escuelaSel.nombre+' ('+D.escuelaSel.cct+')' : $('escManual').value;
+  const rows = [['Programa',prog.nombre],['Irregularidad',tipo.nombre],['Municipio',$('municipio').value],['Localidad',$('localidad').value||'—'],['Escuela',esc_||''],['Evidencias',ARCH.length+' archivo(s)']].filter(r=>r[1]!=='');
+  $('resumen').innerHTML = rows.map(r=>`<div class="resumen-row"><span>${r[0]}</span><span>${esc(r[1])}</span></div>`).join('');
+}
+
+// ---------- Escuelas ----------
+let tEsc;
+$('qEscuela').addEventListener('input', e=>{
+  clearTimeout(tEsc);
+  const q = e.target.value.trim();
+  if (q.length<3) { $('resEsc').classList.add('hidden'); return; }
+  tEsc = setTimeout(async()=>{
+    $('resEsc').classList.remove('hidden'); $('resEsc').innerHTML='<div>Buscando…</div>';
+    try {
+      const lista = await api('buscarEscuelas', q);
+      window._esc = lista;
+      $('resEsc').innerHTML = lista.length ? lista.map((s,i)=>`<div data-i="${i}"><b>${esc(s.nombre)}</b>${esc(s.cct)} · ${esc(s.nivel)} · ${esc(s.turno)}<br>${esc(s.localidad)}, ${esc(s.municipio)}</div>`).join('') : '<div>Sin resultados. Escríbela a mano abajo.</div>';
+    } catch(err){ $('resEsc').innerHTML='<div>No se pudo buscar ahora.</div>'; }
+  }, 400);
+});
+$('resEsc').onclick = e=>{
+  const d = e.target.closest('[data-i]'); if(!d) return;
+  const s = window._esc[+d.dataset.i]; D.escuelaSel = s;
+  $('resEsc').classList.add('hidden'); $('qEscuela').value='';
+  $('escSel').classList.remove('hidden');
+  $('escSel').innerHTML = `✅ <b>${esc(s.nombre)}</b><br>CCT ${esc(s.cct)} · ${esc(s.nivel)} · ${esc(s.turno)}<br>${esc(s.localidad)}, ${esc(s.municipio)}`;
+  if (CFG.municipios.includes(s.municipio)) $('municipio').value = s.municipio;
+  if (!$('localidad').value) $('localidad').value = s.localidad||'';
+};
+
+// ---------- GPS ----------
+function gps(){
+  if(!navigator.geolocation) return alert('Tu celular no permite ubicación.');
+  $('gpsTxt').textContent='Obteniendo ubicación…';
+  navigator.geolocation.getCurrentPosition(p=>{
+    D.lat = p.coords.latitude.toFixed(5); D.lng = p.coords.longitude.toFixed(5);
+    $('gpsTxt').textContent = '✅ Ubicación agregada ('+D.lat+', '+D.lng+')';
+    $('btnGps').textContent='📍 Ubicación lista';
+  }, ()=>{ $('gpsTxt').textContent='No se pudo obtener. Puedes continuar sin ella.'; }, {enableHighAccuracy:true,timeout:12000});
+}
+
+// ---------- Evidencias (sin metadatos en fotos) ----------
+const MAX_MB = 15;
+$('files').addEventListener('change', async e=>{
+  const files = [...e.target.files]; e.target.value='';
+  for (const f of files) {
+    if (ARCH.length>=8) { alert('Máximo 8 evidencias.'); break; }
+    if (f.size > MAX_MB*1024*1024 && !f.type.startsWith('image/')) { alert(f.name+' pesa más de '+MAX_MB+' MB.'); continue; }
+    loader(true,'Preparando evidencia…');
+    try {
+      if (f.type.startsWith('image/')) ARCH.push(await limpiarImagen(f));
+      else ARCH.push({ name:f.name, mime:f.type, data: await b64(f), preview:null });
+    } catch(err){ alert('No se pudo procesar '+f.name); }
+    loader(false);
+  }
+  pintarThumbs();
+});
+function b64(file){ return new Promise((ok,ko)=>{ const r=new FileReader(); r.onload=()=>ok(String(r.result).split(',')[1]); r.onerror=ko; r.readAsDataURL(file); }); }
+function limpiarImagen(file){
+  // Re-dibuja la imagen en un canvas: el JPG nuevo NO lleva EXIF (GPS, celular, fecha)
+  return new Promise((ok,ko)=>{
+    const img = new Image(), url = URL.createObjectURL(file);
+    img.onload = ()=>{
+      const max=1600, k=Math.min(1,max/Math.max(img.width,img.height));
+      const c=document.createElement('canvas'); c.width=Math.round(img.width*k); c.height=Math.round(img.height*k);
+      c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+      const du = c.toDataURL('image/jpeg',0.82); URL.revokeObjectURL(url);
+      ok({ name:'foto.jpg', mime:'image/jpeg', data:du.split(',')[1], preview:du });
+    };
+    img.onerror = ko; img.src = url;
+  });
+}
+function pintarThumbs(){
+  $('thumbs').innerHTML = ARCH.map((a,i)=>`<div class="thumb">${a.preview?`<img src="${a.preview}">`:(a.mime.startsWith('video')?'🎬':a.mime.startsWith('audio')?'🎙️':'📄')+'<br>'+esc(a.name.slice(0,18))}<button onclick="ARCH.splice(${i},1);pintarThumbs()">✕</button></div>`).join('');
+}
+
+// ---------- Enviar ----------
+async function enviar(){
+  $('errEnvio').innerHTML='';
+  const s = D.escuelaSel;
+  const datosEscuela = $('escuelaBox').classList.contains('hidden') ? null : { ...D.sino, montoCobro: $('montoCobro').value, turno: s?s.turno:'' };
+  const denuncia = {
+    programa:D.programa, tipo:D.tipo, descripcion:$('descripcion').value, fechaHechos:$('fechaHechos').value,
+    persona:$('persona').value, municipio:$('municipio').value, localidad:$('localidad').value, lat:D.lat, lng:D.lng,
+    cct: s?s.cct:'', escuela: s?s.nombre:$('escManual').value, nivel: s?s.nivel:'', datosEscuela, contacto:$('contacto').value
+  };
+  loader(true,'Enviando de forma segura…');
+  try {
+    RES = await api('crearDenuncia', denuncia, ARCH.map(a=>({name:a.name,mime:a.mime,data:a.data})));
+    $('okFolio').textContent = RES.folio; $('okPin').textContent = RES.pin;
+    if (CFG.linkFederal) {
+      $('fedCard').classList.remove('hidden'); $('fedLink').href = CFG.linkFederal;
+      $('fedTxt').textContent = CFG.textoFederal || 'Tu denuncia también cuenta a nivel nacional.';
+    }
+    ver('ok');
+  } catch(err){
+    $('errEnvio').innerHTML = `<div class="err">No se pudo enviar: ${esc(err.message)}. Revisa tu conexión e intenta de nuevo.</div>`;
+  }
+  loader(false);
+}
+function fedClick(){ $('fedFolioBox').classList.remove('hidden'); }
+async function guardarFed(){
+  try { await api('guardarFolioFederal', RES.folio, RES.pin, $('folioFed').value); $('fedOk').textContent='✅ Guardado. ¡Gracias!'; }
+  catch(e){ $('fedOk').textContent='No se pudo guardar.'; }
+}
+function guardarImagen(){
+  const logo = new Image();
+  logo.onload = () => dibujarFolio(logo);
+  logo.onerror = () => dibujarFolio(null);
+  logo.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(document.querySelector('.ico-logo').outerHTML);
+}
+function dibujarFolio(logo){
+  const c=document.createElement('canvas'); c.width=900; c.height=600; const x=c.getContext('2d');
+  const g=x.createLinearGradient(0,0,900,600); g.addColorStop(0,'#691C32'); g.addColorStop(1,'#9F2241'); x.fillStyle=g; x.fillRect(0,0,900,600);
+  x.fillStyle='#BC955C'; x.fillRect(0,580,900,20);
+  if (logo) x.drawImage(logo,40,28,96,96);
+  x.textAlign='left'; x.fillStyle='#fff'; x.font='800 44px system-ui,Arial'; x.fillText('VOZ',155,82);
+  const w=x.measureText('VOZ ').width; x.fillStyle='#E9CFA0'; x.fillText('BIENESTAR',155+w,82);
+  x.fillStyle='#F3E6D3'; x.font='600 18px system-ui,Arial'; x.fillText('DENUNCIA ANÓNIMA · TABASCO',158,112);
+  x.textAlign='center'; x.fillStyle='#fff';
+  x.font='26px system-ui,Arial'; x.fillText('Folio',450,215);
+  x.font='bold 64px system-ui,Arial'; x.fillText(RES.folio,450,290);
+  x.font='26px system-ui,Arial'; x.fillText('PIN',450,370);
+  x.font='bold 64px system-ui,Arial'; x.fillText(RES.pin.split('').join(' '),450,445);
+  x.font='22px system-ui,Arial'; x.fillText('Consulta tu denuncia con estos datos. No los compartas.',450,525);
+  const url=c.toDataURL('image/png');
+  $('imgFolio').innerHTML=`<img src="${url}" style="width:100%;border-radius:12px;margin-top:10px"><p class="hint" style="text-align:center">Si no se descargó, mantén presionada la imagen para guardarla.</p>`;
+  try{ const a=document.createElement('a'); a.download=RES.folio+'.png'; a.href=url; a.click(); }catch(e){}
+}
+
+// ---------- Consulta ----------
+async function consultar(){
+  const folio=$('cFolio').value.trim().toUpperCase(), pin=$('cPin').value.trim();
+  if(!folio||!pin) return;
+  loader(true,'Consultando…');
+  try {
+    const r = await api('consultarFolio', folio, pin);
+    const f = d => d ? new Date(d).toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'}) : '';
+    $('cRes').innerHTML = `<div style="margin-top:16px"><div class="resumen-row"><span>Estado</span><span class="estado">${esc(r.estado)}</span></div><div class="resumen-row"><span>Programa</span><span>${esc(r.programa)}</span></div><div class="resumen-row"><span>Recibida</span><span>${f(r.fecha)}</span></div><div class="resumen-row"><span>Última actualización</span><span>${f(r.actualizado)}</span></div>${r.respuesta?`<div class="shield" style="margin-top:12px">💬<div>${esc(r.respuesta)}</div></div>`:''}</div>`;
+  } catch(e){ $('cRes').innerHTML=`<div class="err">${esc(e.message)}</div>`; }
+  loader(false);
+}
+</script>
+</body>
+</html>
