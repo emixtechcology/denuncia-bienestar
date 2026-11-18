@@ -259,7 +259,7 @@ const $ = id => document.getElementById(id);
 const esc = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 // ⚙️ PEGA AQUÍ LA URL /exec DEL APPS SCRIPT DEL CIUDADANO (proyecto 2)
-const API = 'PEGA_AQUI_LA_URL_EXEC_DEL_PROYECTO_CIUDADANO';
+const API = 'https://script.google.com/macros/s/AKfycbylHeLLwHllin79eNdmeCM_cWHxM9zd7J4ydqjA6JP1uURaX0q_bCIX16J3c70z4lOn/exec';
 
 // Llama a las funciones del Code.gs del ciudadano
 async function api(fn, ...args) {
